@@ -6,15 +6,12 @@ const char* password = "12345678";
 
 WebServer server(80);
 
-// 馬達腳位
 const int PIN_MOTOR_ENA = 2; 
 const int PIN_MOTOR_IN1 = 26; 
 const int PIN_MOTOR_IN2 = 27; 
 
-// 舵機腳位
 const int PIN_SERVO = 13;     
 
-// 機械限位 (EPA)
 const int SERVO_ANGLE_LEFT = 135;   
 const int SERVO_ANGLE_RIGHT = 45;   
 const int SERVO_ANGLE_CENTER = 90;
@@ -126,11 +123,10 @@ const char index_html[] PROGMEM = R"=====(
 
         function sendData() {
             debugText.innerText = `轉向: ${state.turn} | 油門: ${state.speed} `;
-            // 注意：這裡改用相對路徑，不用寫死 IP 了
             const url = `/data?speed=${state.speed}&turn=${state.turn}`;
             
             fetch(url)
-                .then(response => response.text()) // 這裡我們試著讀取回應
+                .then(response => response.text())
                 .then(text => console.log('ESP32回應:', text))
                 .catch(err => {});
         }
