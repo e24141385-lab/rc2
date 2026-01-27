@@ -15,9 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="rc2.txt" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".gitignore" />
+    <ClCompile Include="rc2.cpp">
+      <Filter>來源檔案</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
