@@ -6,14 +6,14 @@ const char* password = "12345678";
 
 WebServer server(80);
 
-const int PIN_MOTOR_ENA = 2; 
-const int PIN_MOTOR_IN1 = 26; 
-const int PIN_MOTOR_IN2 = 27; 
+const int PIN_MOTOR_ENA = 2;
+const int PIN_MOTOR_IN1 = 26;
+const int PIN_MOTOR_IN2 = 27;
 
-const int PIN_SERVO = 13;     
+const int PIN_SERVO = 13;
 
-const int SERVO_ANGLE_LEFT = 135;   
-const int SERVO_ANGLE_RIGHT = 45;   
+const int SERVO_ANGLE_LEFT = 135;
+const int SERVO_ANGLE_RIGHT = 45;
 const int SERVO_ANGLE_CENTER = 90;
 
 const char index_html[] PROGMEM = R"=====(
@@ -168,17 +168,17 @@ void setServoAngle(int angle) {
 }
 
 void setMotorSpeed(int speed) {
-    if (speed > 0) { 
+    if (speed > 0) {
         digitalWrite(PIN_MOTOR_IN1, HIGH);
         digitalWrite(PIN_MOTOR_IN2, LOW);
         ledcWrite(PIN_MOTOR_ENA, speed);
-    } 
+    }
     else if (speed < 0) {
         digitalWrite(PIN_MOTOR_IN1, LOW);
         digitalWrite(PIN_MOTOR_IN2, HIGH);
         ledcWrite(PIN_MOTOR_ENA, abs(speed));
-    } 
-    else { 
+    }
+    else {
         digitalWrite(PIN_MOTOR_IN1, LOW);
         digitalWrite(PIN_MOTOR_IN2, LOW);
         ledcWrite(PIN_MOTOR_ENA, 0);
@@ -200,7 +200,8 @@ void handleData() {
         setServoAngle(angle);
 
         server.send(200, "text/plain", "OK");
-    } else {
+    }
+    else {
         server.send(400, "text/plain", "Error");
     }
 }
@@ -213,7 +214,7 @@ void setup() {
 
     ledcAttach(PIN_MOTOR_ENA, 20000, 8);
     ledcAttach(PIN_SERVO, 50, 16);
-    
+
     WiFi.softAP(ssid, password);
 
     server.on("/", handleRoot);
