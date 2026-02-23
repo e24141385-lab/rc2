@@ -8,7 +8,7 @@ const char* password = "12345678";
 WebServer server(80);
 WebSocketsServer webSocket = WebSocketsServer(81);
 
-const int PIN_MOTOR_ENA = 2;
+const int PIN_MOTOR_ENA = 14;
 const int PIN_MOTOR_IN1 = 26;
 const int PIN_MOTOR_IN2 = 27;
 
